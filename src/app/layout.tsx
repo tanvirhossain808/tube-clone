@@ -29,7 +29,7 @@ export default function RootLayout({
             <header>
               <Header />
             </header>
-            <div className="">
+            <div className="flex">
               <Sidebar />
               {children}
             </div>

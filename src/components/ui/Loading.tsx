@@ -9,7 +9,7 @@ const Loading = () => {
     }, [])
     return (
         <div>
-            <LoadingBar ref={loadingRef} color="yellow" />
+            <LoadingBar ref={loadingRef} color="red" />
         </div>
     );
 };

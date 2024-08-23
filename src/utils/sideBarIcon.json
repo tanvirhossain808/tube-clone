@@ -1,0 +1,34 @@
+[
+    [
+        {
+            "name": "Home",
+            "icon": "IoHomeOutline"
+        },
+        {
+            "name": "Shorts",
+            "icon": "SiYoutubeshorts"
+        },
+        {
+            "name": "Subscription",
+            "icon": "MdSubscriptions"
+        }
+    ],
+    [
+        {
+            "name": "Trending",
+            "icon": "FaFireAlt"
+        },
+        {
+            "name": "Music",
+            "icon": "IoMdMusicalNote"
+        },
+        {
+            "name": "Gaming",
+            "icon": "GrGamepad"
+        },
+        {
+            "name": "Sports",
+            "icon": "MdOutlineSportsCricket"
+        }
+    ]
+]

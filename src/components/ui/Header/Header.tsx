@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <>
             <Loading />
-            <div className="h-[56px] px-6 flex items-center justify-between bg-red-600">
+            <div className="h-[56px] px-6 flex items-center justify-between">
                 <div className="flex items-center">
                     <IoMdMenu className="mr-4 test-white w-10" size={25} />
                     <div className="flex items-center">
