@@ -1,9 +1,9 @@
 // pages/api/getVideos.ts
 
-import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
     console.log("object");
     try {
         const apiKey = process.env.YOU_TUBE_VIDEO_KEY_API;
@@ -11,24 +11,25 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
         console.log(apiKey);
         console.log(searchUrl)
         if (!apiKey) {
-            return res.status(500).json({ error: 'API key is missing.' });
+            return NextResponse.json({ error: "Api key is missing" }, { status: 500 });
         }
-        if (!searchUrl) return res.status(500).json({ error: "Search url is missing" })
+        if (!searchUrl) return NextResponse.json({ error: "Search url is missing" }, { status: 500 });
+
 
         const response = await axios.get(searchUrl, {
             params: {
-                part: 'snippet',
+                part: ['snippet,contentDetails,statistics'],
                 type: 'video',
                 q: 'React.js',
                 maxResults: 50,
                 key: apiKey,
             },
         });
+        console.log(response);
         const data = response.data
-        console.log(data);
-        return Response.json({ data, message: "success" });
+        return NextResponse.json({ message: "success", data });
     } catch (error) {
-        console.error('Error fetching YouTube videos:', error);
-        return res.status(500).json({ error: 'Error fetching YouTube videos.' });
+        console.log(error);
+        return NextResponse.json({ error: "Error fetching youtube videos", err: error }, { status: 500 });
     }
 }

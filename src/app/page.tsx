@@ -3,7 +3,8 @@ import CardContainer from "@/components/CardContainer"
 import useGetYouTubeVideosList from "@/hooks/useGetYouTubeVideosList";
 
 export default function Home() {
-  useGetYouTubeVideosList()
+  const { videos } = useGetYouTubeVideosList()
+  console.log(videos);
 
   return (
     // <CardContainer videosList={videosList} />
