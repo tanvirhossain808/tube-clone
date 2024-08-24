@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { YouTubeSearchResponse } from "@/lib/globalType"; // Import your YouTubeSearchResponse type
 
 // Define the type of your state
 interface searchState {
-    items: string[]; // Adjust the type based on the items (could be an array of objects, strings, etc.)
+    items: YouTubeSearchResponse[]; // Adjust the type based on your data structure
 }
 
 // Define the initial state using the searchState type
@@ -15,8 +16,8 @@ const searchSlice = createSlice({
     initialState,
     reducers: {
         // Define the type of the payload for addItem action
-        addItem: (state, action: PayloadAction<string>) => {
-            state.items.push(action.payload); // action.payload is now typed as a string
+        addItem: (state, action: PayloadAction<YouTubeSearchResponse>) => {
+            state.items = [action.payload] // action.payload is now typed as YouTubeSearchResponse
         },
         // No need for a payload in removeItem, so we don't need to type it
         removeItem: (state) => {

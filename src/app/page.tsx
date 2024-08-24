@@ -1,14 +1,15 @@
-import VoiceSearch from "@/components/VoiceSearch";
-
+"use client"
+import CardContainer from "@/components/CardContainer"
+import useGetYouTubeVideosList from "@/hooks/useGetYouTubeVideosList";
 
 export default function Home() {
-
-
+  useGetYouTubeVideosList()
 
   return (
-    <div className="overflow-hidden max-h-[500px]">
-      {/* <VoiceSearch /> */}
-      fg
-    </div>
+    // <CardContainer videosList={videosList} />
+    <>
+      the
+    </>
   )
 }
+
