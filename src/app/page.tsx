@@ -6,8 +6,9 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className="overflow-hidden max-h-[500px]">
       {/* <VoiceSearch /> */}
+      fg
     </div>
   )
 }

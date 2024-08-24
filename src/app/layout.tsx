@@ -26,12 +26,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange>
           <ClientProvider>
-            <header>
+            <header className="sticky top-0">
               <Header />
             </header>
-            <div className="flex">
+            <div className="flex overflow-hidde">
               <Sidebar />
-              {children}
+              <main className="flex-1 overflow-y-auo">
+                {children}
+              </main>
             </div>
           </ClientProvider>
         </ThemeProvider>
