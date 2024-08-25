@@ -21,7 +21,7 @@ const icons: Record<string, IconType> = {
 
 const Sidebar = () => {
     return (
-        <div className="w-[240px] max-h-[calc(100vh-56px)] overflow-hidden hover:overflow-y-auto p-4">
+        <div className="w-[240px] top-0 sticky max-h-[calc(100vh-56px)] overflow-hidden hover:overflow-y-auto p-4">
             {sidebarIconsInfo.map((iconsDetails, index) => (
                 <div key={index}>
                     {index !== 0 && (
@@ -32,7 +32,7 @@ const Sidebar = () => {
                     {iconsDetails.map((icon, index) => {
                         const IconComponent = icons[icon.icon];
                         return (
-                            <Link href="/" key={index} className="mb-6 gap-3 block p-3 duration-200 transition-all rounded hover:bg-gray-400">
+                            <Link href="/" key={index} className="mb-6 gap-3 block p-3 duration-200 transition-all rounded hover:bg-gray-600">
                                 <div className="flex items-center gap-3">
                                     <IconComponent />
                                     <p>{icon.name}</p>

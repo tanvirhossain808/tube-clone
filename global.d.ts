@@ -48,3 +48,7 @@ interface Window {
     SpeechRecognition: SpeechRecognitionConstructor;
     webkitSpeechRecognition: SpeechRecognitionConstructor;
 }
+
+interface Window {
+    YT: any; // Replace 'any' with a specific type if needed
+}

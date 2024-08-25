@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-bg h-full w-full`}>
+      <body className={`${inter.className} bg-bg h-full w-full max-w-[1440px] mx-auto`}>
         <ThemeProvider attribute="class"
           defaultTheme="dark"
           enableSystem
@@ -29,9 +29,9 @@ export default function RootLayout({
             <header className="sticky top-0">
               <Header />
             </header>
-            <div className="flex overflow-hidde">
+            <div className="flex">
               <Sidebar />
-              <main className="flex-1 overflow-y-auo">
+              <main className="flex-1 overflow-auto max-h-[calc(100vh-56px)]">
                 {children}
               </main>
             </div>

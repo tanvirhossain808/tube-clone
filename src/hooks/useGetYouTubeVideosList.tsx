@@ -1,4 +1,6 @@
-import { addItem } from "@/store/SearchSlice";
+
+import { updateToken } from "@/store/nextPageTokenSlice";
+import { addItem } from "@/store/videoSlice";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,14 +11,15 @@ const useGetYouTubeVideosList = () => {
     const videosData = async (nextPageToken?: string) => {
         try {
             const videos = await fetch("/api/video")
-            const { data } = await videos.json()
+            const { data, response } = await videos.json()
+            // console.log(response, "response");
             if (data.items.length) {
                 dispatch(addItem(data))
+                dispatch(updateToken(data.nextPageToken))
             }
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
         }
-        console.log(videos);
         return { "videosData": "name" }
 
     }

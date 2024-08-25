@@ -11,7 +11,7 @@ const initialState: searchState = {
     items: [],
 };
 
-const searchSlice = createSlice({
+const videoSlice = createSlice({
     name: "cart", // Adjusted name for clarity
     initialState,
     reducers: {
@@ -31,5 +31,5 @@ const searchSlice = createSlice({
 });
 
 // Export actions and reducer
-export const { addItem, removeItem, clearCart } = searchSlice.actions;
-export default searchSlice.reducer;
+export const { addItem, removeItem, clearCart } = videoSlice.actions;
+export default videoSlice.reducer;

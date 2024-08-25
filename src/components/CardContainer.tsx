@@ -1,5 +1,3 @@
-// "use client";
-
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -9,46 +7,35 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { FC } from "react";
+import { YouTubeVideoItem } from "@/lib/globalType";
+import { FC, useState } from "react";
+import VideoPlayer from "./ui/VideoPlayer";
+import Thumbnail from "./ui/Thumbnail";
 
-// Define the props type
-type YouTubeVideo = {
-    id: {
-        videoId: string;
-    };
-    snippet: {
-        title: string;
-        description: string;
-        thumbnails: {
-            default: {
-                url: string;
-            };
-        };
-    };
-};
 
-type CardContainerProps = {
-    videosList: () => Promise<YouTubeVideo>;
-};
-const CardContainer: FC<CardContainerProps> = ({ videosList }) => {
-    console.log(videosList())
+
+const CardContainer: FC<YouTubeVideoItem> = ({ snippet, contentDetails, statistics, id }) => {
+    const { tags, thumbnails } = snippet
+    const { duration } = contentDetails
+    const videoId = id
+    const { viewCount, likeCount, commentCount } = statistics || {}
+
+    const [isHovered, setIsHovered] = useState<boolean>(false)
     return (
-        <Card className="w-[350px]">
+        <Card className="w-full bg-rd-800" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <CardHeader>
                 <CardTitle>Create project</CardTitle>
                 <CardDescription>Deploy your new project in one-click.</CardDescription>
             </CardHeader>
-            <CardContent>
-                <form>
-                    <div className="grid w-full items-center gap-4">
-                        <div className="flex flex-col space-y-1.5">
-                            {/* Add content here */}
-                        </div>
-                        <div className="flex flex-col space-y-1.5">
-                            {/* Add content here */}
-                        </div>
-                    </div>
-                </form>
+            <CardContent className="w-full">
+                {
+                    isHovered ?
+                        <VideoPlayer id={id} {...thumbnails.standard} /> :
+                        < Thumbnail {...thumbnails} />
+                }
+                {/* < Thumbnail {...thumbnails} /> */}
+                {/* <VideoPlayer id={id} {...thumbnails.standard} /> : */}
+
             </CardContent>
             <CardFooter className="flex justify-between">
                 <Button variant="outline">Cancel</Button>
