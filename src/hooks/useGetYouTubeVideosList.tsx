@@ -1,13 +1,13 @@
 
+import { CartType, YouTubeSearchResponse } from "@/lib/globalType";
 import { updateToken } from "@/store/nextPageTokenSlice";
 import { addItem } from "@/store/videoSlice";
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 const useGetYouTubeVideosList = () => {
     // const videosData
     const dispatch = useDispatch()
-    const videos = useSelector((state: any) => state.cart.items[0])
+    const videos = useSelector((state: CartType) => state.cart.items[0])
     const videosData = async (nextPageToken?: string) => {
         try {
             const videos = await fetch("/api/video")

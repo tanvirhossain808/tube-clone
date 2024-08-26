@@ -1,35 +1,49 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { YouTubeSearchResponse } from "@/lib/globalType"; // Import your YouTubeSearchResponse type
 
-// Define the type of your state
-interface searchState {
-    items: YouTubeSearchResponse[]; // Adjust the type based on your data structure
+
+type CurrentTimeProps = {
+    [key: string]: number
 }
 
-// Define the initial state using the searchState type
+interface searchState {
+    items: YouTubeSearchResponse[];
+    currentTime: CurrentTimeProps
+}
+interface AddTimeProps {
+    id: string, time: number
+}
+
 const initialState: searchState = {
     items: [],
+    currentTime: {}
 };
 
 const videoSlice = createSlice({
-    name: "cart", // Adjusted name for clarity
+    name: "cart",
     initialState,
     reducers: {
-        // Define the type of the payload for addItem action
+
         addItem: (state, action: PayloadAction<YouTubeSearchResponse>) => {
-            state.items = [action.payload] // action.payload is now typed as YouTubeSearchResponse
+            state.items = [action.payload]
         },
-        // No need for a payload in removeItem, so we don't need to type it
+
         removeItem: (state) => {
             state.items.pop();
         },
-        // clearCart doesn't require a payload
+
         clearCart: (state) => {
-            return { items: [] }; // Returning a new state object with an empty array
+            { state.items = [] };
         },
+        addTime: (state, action: PayloadAction<AddTimeProps>) => {
+            const { id, time } = action.payload
+            state.currentTime[id] = time
+        },
+        clearTime: (state) => {
+            state.currentTime = {}
+        }
     },
 });
 
-// Export actions and reducer
-export const { addItem, removeItem, clearCart } = videoSlice.actions;
+export const { addItem, removeItem, clearCart, addTime } = videoSlice.actions;
 export default videoSlice.reducer;

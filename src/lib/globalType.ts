@@ -71,5 +71,14 @@ interface YouTubeSearchResponse {
     };
     items: YouTubeVideoItem[];
 }
+interface CartType {
+    cart: {
+        items: YouTubeSearchResponse[],
+        currentTime: {
+            [key: string]: number
+        }
+    },
 
-export type { YouTubeSearchResponse, YouTubeVideoItem }
+}
+
+export type { YouTubeSearchResponse, YouTubeVideoItem, CartType }
