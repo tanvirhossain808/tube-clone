@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { CartType, YouTubeSearchResponse } from "@/lib/globalType";
 import { updateToken } from "@/store/nextPageTokenSlice";

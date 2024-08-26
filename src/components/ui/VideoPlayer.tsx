@@ -1,5 +1,5 @@
 import useCacheVideoTime from '@/hooks/useCacheVideoTime';
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 
 type VideoPlayerProps = {
@@ -11,6 +11,7 @@ type VideoPlayerProps = {
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = ({ id, width, height, start = 0, playingTime }) => {
+
 
     const { onStateChange, startTime } = useCacheVideoTime(id, playingTime)
 
@@ -36,6 +37,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({ id, width, height, start = 0, playi
 
         />
     );
+
 };
 
 export default VideoPlayer;

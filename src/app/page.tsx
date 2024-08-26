@@ -14,7 +14,6 @@ export default function Home() {
   !items && <div>
     Loading
   </div>
-  console.log(videos);
   return (
     <>
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
