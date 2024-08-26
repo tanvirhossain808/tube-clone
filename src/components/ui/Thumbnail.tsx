@@ -31,7 +31,7 @@ type ThumbnailsType = {
 
 const Thumbnail: FC<ThumbnailsType> = ({ medium, default: normal, high, standard }) => {
     const { url, width, height } = standard
-    console.log(height, width);
+    // console.log(height, width);
     return (
         <div>
             <Image src={url} alt="thumbnail" width={width} height={height} loading="lazy" className="object-cove"

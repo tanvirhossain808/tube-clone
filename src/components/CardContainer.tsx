@@ -8,34 +8,35 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import { YouTubeVideoItem } from "@/lib/globalType";
-import { FC, useState } from "react";
-import VideoPlayer from "./ui/VideoPlayer";
+import { FC, useState, useEffect, useRef } from "react";
 import Thumbnail from "./ui/Thumbnail";
-
-
+import VideoPlayer from "./ui/VideoPlayer";
+import useShowHoverVideo from "@/hooks/UseShowHoverVideo";
 
 const CardContainer: FC<YouTubeVideoItem> = ({ snippet, contentDetails, statistics, id }) => {
-    const { tags, thumbnails } = snippet
-    const { duration } = contentDetails
-    const videoId = id
-    const { viewCount, likeCount, commentCount } = statistics || {}
+    const { tags, thumbnails } = snippet;
+    const { duration } = contentDetails;
+    const { viewCount, likeCount, commentCount } = statistics || {};
+    const [isHovered, setIsHovered] = useState<boolean>(false);
+    const showVideo = useShowHoverVideo(isHovered)
 
-    const [isHovered, setIsHovered] = useState<boolean>(false)
+    console.log(showVideo, "showVideo");
     return (
-        <Card className="w-full bg-rd-800" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <Card
+            className="w-full h-full bg-rd-800"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <CardHeader>
-                <CardTitle>Create project</CardTitle>
-                <CardDescription>Deploy your new project in one-click.</CardDescription>
+                <CardTitle>{snippet.title}</CardTitle>
+                <CardDescription>{snippet.description}</CardDescription>
             </CardHeader>
-            <CardContent className="w-full">
-                {
-                    isHovered ?
-                        <VideoPlayer id={id} {...thumbnails.standard} /> :
-                        < Thumbnail {...thumbnails} />
-                }
-                {/* < Thumbnail {...thumbnails} /> */}
-                {/* <VideoPlayer id={id} {...thumbnails.standard} /> : */}
-
+            <CardContent className="w-full h-full">
+                {showVideo ? (
+                    <VideoPlayer id={id} {...thumbnails.standard} />
+                ) : (
+                    <Thumbnail {...thumbnails} />
+                )}
             </CardContent>
             <CardFooter className="flex justify-between">
                 <Button variant="outline">Cancel</Button>
