@@ -53,10 +53,10 @@ interface YouTubeVideoItem {
 
     };
     statistics?: {
-        viewCount: String;
-        likeCount: String;
-        favoriteCount: String;
-        commentCount: String;
+        viewCount: number;
+        likeCount: number;
+        favoriteCount: number;
+        commentCount: number;
     }
 };
 
