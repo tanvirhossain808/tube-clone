@@ -39,7 +39,7 @@ const Thumbnail: FC<ThumbnailsType> = ({
     const { url, width, height } = standard
     // console.log(height, width);
     return (
-        <div className="relative">
+        <div className="relative -z-10">
             <Image
                 src={url}
                 alt="thumbnail"

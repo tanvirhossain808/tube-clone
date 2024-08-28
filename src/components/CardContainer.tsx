@@ -56,7 +56,7 @@ const CardContainer: FC<YouTubeVideoItem> = ({
             </CardContent>
             <CardTitle>{title}</CardTitle>
             <CardFooter className="flex justify-between">
-                <div className="flex items-center gap-1 text-[#ffffff91]">
+                <div className=" flex items-center gap-1  text-[#ffffff91]">
                     <div>{formateViews(viewCount)}</div>
                     <div className="h-1 w-1 rounded-full bg-[#ffffff91]"></div>
                     <div>{formatUploadedDay(publishedAt)}</div>

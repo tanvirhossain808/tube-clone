@@ -1,15 +1,11 @@
-
-import { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react"
 
 const useSearchTest = () => {
-    const [test, setTest] = useState<string>("")
+    const [searchInput, setSearchInput] = useState<string>("")
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-
     }
 
-    return { onSubmit, test, setTest }
-
-
+    return { onSubmit, searchInput, setSearchInput }
 }
 export default useSearchTest
