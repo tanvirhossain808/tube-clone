@@ -63,8 +63,8 @@ const useAutoComplete = (searchText: string) => {
                     title,
                 }
             } */
-        } catch (error) {
-            console.log(error, "error")
+        } catch (error: any) {
+            console.log(error.message, "errors")
         }
     }
     useEffect(() => {

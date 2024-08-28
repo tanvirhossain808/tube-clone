@@ -27,11 +27,12 @@ export async function POST(req: NextRequest) {
                 message: "Internal server error",
                 status: 404,
             })
+        console.log(url, "url")
         const data = await axios.get(url, { params })
         if (data.status !== 200)
             return NextResponse.json({ message: "fail", status: 404 })
         return NextResponse.json({ message: "success", data: data?.data })
-    } catch (error) {
-        console.log(error)
+    } catch (error: any) {
+        console.log(error.message)
     }
 }
