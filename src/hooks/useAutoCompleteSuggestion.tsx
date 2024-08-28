@@ -6,8 +6,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const useAutoComplete = (searchText: string) => {
-    console.log(searchText, "text")
-    console.log(!searchText)
     const [searchSuggestion, setSearchSuggestion] =
         useState<{ id: number; title: string }[]>()
     const cacheSearches = useSelector(
@@ -21,9 +19,7 @@ const useAutoComplete = (searchText: string) => {
     const data = async () => {
         if (!searchText) return setSearchSuggestion([])
         const cache = cacheSearches[searchText]
-        console.log(cache, "ug")
         if (cache) return setSearchSuggestion(cache)
-        console.log("after maching cache")
         try {
             const response = await axios.post("api/search", { searchText })
 
@@ -44,7 +40,6 @@ const useAutoComplete = (searchText: string) => {
                     title,
                 }
             }
-            console.log(titles, "titles")
             setSearchSuggestion(Object.values(titles))
             dispatch(
                 addSearchCache({

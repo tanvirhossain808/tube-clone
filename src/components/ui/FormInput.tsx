@@ -10,7 +10,6 @@ const FormInput = () => {
     // useSearchVideo()
     const { onSubmit, searchInput, setSearchInput } = useSearchTest()
     const { searchSuggestion } = useAutoComplete(searchInput)
-    console.log(searchSuggestion, "d")
     return (
         <form className="flex items-center relative h-full" onSubmit={onSubmit}>
             <div
