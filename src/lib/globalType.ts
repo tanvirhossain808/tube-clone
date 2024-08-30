@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 interface YouTubeVideoItem {
     /*  id: {
          videoId: string;
@@ -90,6 +92,17 @@ interface QueryList {
         title: string
     }
 }
+interface SearchCacheProps {
+    id: number
+    title: string
+}
+
+interface KeywordSuggestionProps {
+    title: string
+    setSearchInput: Dispatch<SetStateAction<string>>
+    searchInput: string
+    id: number
+}
 
 export type {
     YouTubeSearchResponse,
@@ -97,4 +110,6 @@ export type {
     CartType,
     TitleType,
     QueryList,
+    KeywordSuggestionProps,
+    SearchCacheProps,
 }

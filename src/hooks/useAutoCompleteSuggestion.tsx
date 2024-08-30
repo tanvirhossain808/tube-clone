@@ -2,24 +2,24 @@
 import { QueryList, TitleType } from "@/lib/globalType"
 import { addSearchCache } from "@/store/searchCacheSlice"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const useAutoComplete = (searchText: string) => {
-    const [searchSuggestion, setSearchSuggestion] =
-        useState<{ id: number; title: string }[]>()
     const cacheSearches = useSelector(
         (state: {
             searchCache: { [key: string]: { id: number; title: string }[] }
         }) => state.searchCache
     )
 
+    const cache = cacheSearches[searchText] || []
+
+    console.log(cache, "cache")
+
     const dispatch = useDispatch()
 
     const data = async () => {
-        if (!searchText) return setSearchSuggestion([])
-        const cache = cacheSearches[searchText]
-        if (cache) return setSearchSuggestion(cache)
+        if (!searchText) return
         try {
             const response = await axios.post("api/search", { searchText })
 
@@ -40,7 +40,6 @@ const useAutoComplete = (searchText: string) => {
                     title,
                 }
             }
-            setSearchSuggestion(Object.values(titles))
             dispatch(
                 addSearchCache({
                     searchKey: searchText,
@@ -62,17 +61,19 @@ const useAutoComplete = (searchText: string) => {
             console.log(error.message, "errors")
         }
     }
+
     useEffect(() => {
         // data()
         const deBouncingHand = setTimeout(() => {
-            data()
+            if (searchText && !cache.length) data()
+            // setShowSearchSuggestionbar(true)
         }, 200)
         return () => {
             clearTimeout(deBouncingHand)
         }
     }, [searchText])
 
-    return { searchSuggestion }
+    return { cache }
 }
 
 export default useAutoComplete

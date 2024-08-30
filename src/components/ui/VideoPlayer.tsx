@@ -1,7 +1,8 @@
+"use client"
 import useCacheVideoTime from "@/hooks/useCacheVideoTime"
-import React, { FC, useRef } from "react"
-import YouTube, { YouTubeProps } from "react-youtube"
-
+import { FC } from "react"
+// import YouTube, { YouTubeProps } from "react-youtube"
+import { YouTube, YouTubeProps } from "../../utils/ExportLib/ExportLib"
 type VideoPlayerProps = {
     id: string
     width: number
@@ -22,9 +23,9 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     const { onStateChange, startTime, leftTime, onReady } = useCacheVideoTime(
         id,
         playingTime,
-        totalTime
+        totalTime as string
     )
-
+    console.log(id, "hey")
     const opts: YouTubeProps["opts"] = {
         height: `${height}`,
         width: `${width}`,
@@ -46,16 +47,6 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
                 onStateChange={onStateChange}
                 onReady={onReady}
             />
-            {
-                <p
-                    className="absolute bottom-16 w-10
-                 text-[12px] rounded-sm bg-[#000000c9]
-                  right-2 flex items-center justify-center
-                   h-[26px]"
-                >
-                    {leftTime}
-                </p>
-            }
         </div>
     )
 }

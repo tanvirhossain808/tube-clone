@@ -17,6 +17,7 @@ import { useSelector } from "react-redux"
 import moment from "moment"
 import "moment-duration-format"
 import formatUploadedDay from "@/utils/formateUploadedDay"
+import { useRouter } from "next/navigation"
 
 const CardContainer: FC<YouTubeVideoItem> = ({
     snippet,
@@ -27,6 +28,7 @@ const CardContainer: FC<YouTubeVideoItem> = ({
     const playingTime = useSelector((state: CartType) => {
         return state.cart.currentTime[id] ? state.cart.currentTime[id] : 0
     })
+    const router = useRouter()
 
     const { thumbnails, publishedAt, title } = snippet
 
@@ -36,11 +38,16 @@ const CardContainer: FC<YouTubeVideoItem> = ({
     const showVideo = useShowHoverVideo(isHovered)
     const totalTime = moment.duration(duration).format("mm:ss", { trim: false })
 
+    const handleClickVideo = () => {
+        router.push(`/watch?v=${id}`)
+    }
+
     return (
         <Card
-            className="w-full h-[400px] bg-rd-800"
+            className="w-full h-[400px] bg-rd-800 cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={handleClickVideo}
         >
             <CardContent className="">
                 {showVideo ? (
