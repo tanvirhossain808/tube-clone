@@ -6,9 +6,9 @@ import axios from "axios"
 
 export default function Home() {
     const { videos } = useGetYouTubeVideosList()
-    const { items } = videos || {}
+    const { items } = videos || []
 
-    console.log(videos)
+    console.log(videos, "video")
     const loading = <div>this is for loading</div>
 
     !items && <div>Loading</div>

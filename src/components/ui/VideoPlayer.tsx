@@ -25,7 +25,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
         playingTime,
         totalTime as string
     )
-    console.log(id, "hey")
+    console.log(leftTime, "hey")
     const opts: YouTubeProps["opts"] = {
         height: `${height}`,
         width: `${width}`,
@@ -47,6 +47,16 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
                 onStateChange={onStateChange}
                 onReady={onReady}
             />
+            {
+                <p
+                    className="absolute bottom-16 w-10
+                 text-[12px] rounded-sm bg-[#000000c9]
+                  right-2 flex items-center justify-center
+                   h-[26px]"
+                >
+                    {leftTime}
+                </p>
+            }
         </div>
     )
 }
