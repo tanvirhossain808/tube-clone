@@ -5,6 +5,8 @@ import { YouTube, YouTubeProps } from "../../utils/ExportLib/ExportLib"
 import Image from "next/image"
 import { avatar } from "../../../constant/image"
 import formateStatisticsCount from "@/utils/formateStatisticsCount"
+import { FaAngleDown, FaBell } from "react-icons/fa"
+import CommentForm from "../Comments/CommentForm"
 
 const WatchIframe = ({
     id,
@@ -36,7 +38,7 @@ const WatchIframe = ({
             <h3 className={` text-2xl ${!title && "text-center"}`} text-2xl>
                 {title}
             </h3>
-            <div className="flex items-center gap-3 cursor-pointer">
+            <div className="flex items-center gap-3 cursor-pointer mt-3">
                 <Image
                     src={thumbnailsUrl || avatar}
                     width={400}
@@ -51,6 +53,16 @@ const WatchIframe = ({
                             Number(statistics?.subscriberCount)
                         )}
                     </p>
+                </div>
+                <div className="flex gap-2 ml-6 bg-[#3F3F3F] rounded-3xl p-2">
+                    <FaBell size={30} />
+                    <p>Subscribed</p>
+                    <FaAngleDown size={20} />
+                </div>
+            </div>
+            <div className="mt-10">
+                <div>
+                    <CommentForm />
                 </div>
             </div>
         </div>
