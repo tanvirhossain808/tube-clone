@@ -24,20 +24,24 @@ export async function POST(req: Request, res: Response) {
                 { status: 500 }
             )
 
-        // const response = await axios.get(youTubeLInk + "commentThreads", {
-        //     params: {
-        //         part: "snippet,replies", // Retrieves comment data and replies
-        //         key: apiKey, // Your YouTube API key
-        //         videoId: id, // The ID of the video you're fetching comments for
-        //     },
-        // })
-        // if (response.status !== 200) {
-        //     throw new Error("quota limit exceeded")
-        // }
+        const response = await axios.get(youTubeLInk + "commentThreads", {
+            params: {
+                part: "snippet,replies", // Retrieves comment data and replies
+                key: apiKey, // Your YouTube API key
+                videoId: id, // The ID of the video you're fetching comments for
+            },
+        })
+        if (response.status !== 200) {
+            throw new Error("quota limit exceeded")
+        }
         return NextResponse.json({
             message: "success",
-            data: commentData,
+            data: response.data,
         })
+        // return NextResponse.json({
+        //     message: "success",
+        //     data: commentData,
+        // })
 
         // return NextResponse.json({
         //     message: "success",

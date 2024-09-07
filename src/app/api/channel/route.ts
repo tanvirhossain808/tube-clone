@@ -27,13 +27,12 @@ export async function POST(req: Request, res: Response) {
             "https://www.googleapis.com/youtube/v3/channels",
             {
                 params: {
-                    part: "snippet", // You can add 'statistics' if you need subscriber count, etc.
+                    part: "snippet,statistics", // You can add 'statistics' if you need subscriber count, etc.
                     key: apiKey, // Your YouTube API key
                     id: channelId, // The ID of the channel you're fetching
                 },
             }
         )
-        console.log(response.data, "fdksl")
         if (response.status !== 200) {
             throw new Error("quota limit exceeded")
         }

@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import formateViews from "../utils/formateVies"
+import formateStatisticsCount from "@/utils/formateStatisticsCount"
 import { CartType, YouTubeVideoItem } from "@/lib/globalType"
 import { FC, useState, useEffect, useRef } from "react"
 import Thumbnail from "./ui/Thumbnail"
@@ -64,7 +64,7 @@ const CardContainer: FC<YouTubeVideoItem> = ({
             <CardTitle>{title}</CardTitle>
             <CardFooter className="flex justify-between">
                 <div className=" flex items-center gap-1  text-[#ffffff91]">
-                    <div>{formateViews(viewCount)}</div>
+                    <div>{formateStatisticsCount(viewCount, "views")}</div>
                     <div className="h-1 w-1 rounded-full bg-[#ffffff91]"></div>
                     <div>{formatUploadedDay(publishedAt)}</div>
                 </div>

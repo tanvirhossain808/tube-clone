@@ -14,28 +14,25 @@ const WatchContainer = ({ id }: { id: string }) => {
         (state: CartType) => state?.cart?.items[0]?.items
     )
     const videInfo = selector?.find((arr) => arr.id === id)
-    const title = videInfo?.snippet?.localized?.title
-    const channelName = videInfo?.snippet?.channelTitle
+    const videoTitle = videInfo?.snippet?.localized?.title
+    // const channelName = videInfo?.snippet?.channelTitle
     const { channelId, commentsInfo } = useGetComments(id)
     const { channelData } = useGetChannelInfo(channelId)
-    // useEffect(() => {
-    //     const getInfo = async () => {
-    //         // const { data } = await fetchCommetnData()
-    //         // const channelId = data[0].snippet.channelId
-    //         //
-    //         // const commentData = await fetchCommetnData()
 
-    //     }
-    //     getInfo()
-    // }, [id])
-    console.log(channelId, channelData, commentsInfo)
+    console.log(channelId, "channelId")
+    console.log(channelData, "channelData")
+    console.log(commentsInfo, "commensInfo")
+    const { title, thumbnails } = channelData?.data?.items[0]?.snippet || {}
+    const { statistics } = channelData?.data?.items[0] || {}
 
     return (
         <div className="flex">
             <WatchIframe
                 id={id}
-                title={title ? title : "title"}
-                channelName={channelName ? channelName : "Channel name"}
+                title={videoTitle ? videoTitle : "title"}
+                channelName={title ? title : "Channel name"}
+                thumbnailsUrl={thumbnails?.high.url || ""}
+                statistics={statistics}
             />
             <div className="w-1/2">
                 <h1>hello</h1>
