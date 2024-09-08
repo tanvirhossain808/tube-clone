@@ -7,6 +7,8 @@ import { avatar } from "../../../constant/image"
 import formateStatisticsCount from "@/utils/formateStatisticsCount"
 import { FaAngleDown, FaBell } from "react-icons/fa"
 import CommentForm from "../Comments/CommentForm"
+import CommentsContainer from "../CommentsContainer"
+import { TopLevelComment } from "@/lib/globalType"
 
 const WatchIframe = ({
     id,
@@ -14,12 +16,14 @@ const WatchIframe = ({
     channelName,
     thumbnailsUrl,
     statistics,
+    commentsInfo,
 }: {
     id: string
     title: string
     channelName: string
     thumbnailsUrl: string
     statistics?: { subscriberCount: number }
+    commentsInfo?: TopLevelComment
 }) => {
     const opts: YouTubeProps["opts"] = {
         height: "500",
@@ -31,7 +35,7 @@ const WatchIframe = ({
             // start: Math.round(startTime),
         },
     }
-
+    if (commentsInfo === undefined) return
     return (
         <div className="min-h-screen w-full ">
             <YouTube videoId={id} opts={opts} />
@@ -63,6 +67,11 @@ const WatchIframe = ({
             <div className="mt-10">
                 <div>
                     <CommentForm />
+                </div>
+                <div>
+                    {commentsInfo.map((comment) => (
+                        <CommentsContainer key={id} {...comment} />
+                    ))}
                 </div>
             </div>
         </div>

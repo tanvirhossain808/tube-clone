@@ -104,6 +104,24 @@ interface KeywordSuggestionProps {
     id: number
 }
 
+interface TopLevelCommentObj {
+    id: string
+    snippet: {
+        topLevelComment: {
+            snippet: {
+                authorProfileImageUrl: string
+                likeCount: number
+                publishedAt: string
+                textDisplay: string
+                videoId: string
+                authorDisplayName: string
+            }
+        }
+    }
+}
+
+type TopLevelComment = TopLevelCommentObj[]
+
 export type {
     YouTubeSearchResponse,
     YouTubeVideoItem,
@@ -112,4 +130,6 @@ export type {
     QueryList,
     KeywordSuggestionProps,
     SearchCacheProps,
+    TopLevelComment,
+    TopLevelCommentObj,
 }

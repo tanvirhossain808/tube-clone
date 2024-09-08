@@ -16,7 +16,7 @@ const WatchContainer = ({ id }: { id: string }) => {
     const videInfo = selector?.find((arr) => arr.id === id)
     const videoTitle = videInfo?.snippet?.localized?.title
     // const channelName = videInfo?.snippet?.channelTitle
-    const { channelId, commentsInfo } = useGetComments(id)
+    const { channelId, commentsInfo } = useGetComments(id) || {}
     const { channelData } = useGetChannelInfo(channelId)
 
     console.log(channelId, "channelId")
@@ -24,7 +24,7 @@ const WatchContainer = ({ id }: { id: string }) => {
     console.log(commentsInfo, "commensInfo")
     const { title, thumbnails } = channelData?.data?.items[0]?.snippet || {}
     const { statistics } = channelData?.data?.items[0] || {}
-
+    if (!commentsInfo) return
     return (
         <div className="flex">
             <WatchIframe
@@ -33,6 +33,7 @@ const WatchContainer = ({ id }: { id: string }) => {
                 channelName={title ? title : "Channel name"}
                 thumbnailsUrl={thumbnails?.high.url || ""}
                 statistics={statistics}
+                commentsInfo={commentsInfo}
             />
             <div className="w-1/2">
                 <h1>hello</h1>
