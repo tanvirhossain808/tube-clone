@@ -11,18 +11,13 @@ export async function POST(req: Request, res: Response) {
     try {
         const apiKey = process.env.YOU_TUBE_VIDEO_KEY_API
         // const searchUrl = process.env.YOU_TUBE_VIDEO_API
-        const searchUrl = process.env.YOU_TUBE_CHANNEL_LINK
         if (!apiKey) {
             return NextResponse.json(
                 { error: "Api key is missing" },
                 { status: 500 }
             )
         }
-        if (!searchUrl)
-            return NextResponse.json(
-                { error: "Search url is missing" },
-                { status: 500 }
-            )
+        // if (!searchUrl)
 
         const response = await axios.get(youTubeLInk + "commentThreads", {
             params: {
