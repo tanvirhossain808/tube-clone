@@ -12,12 +12,12 @@ import { MdOutlineEmojiEmotions } from "react-icons/md"
 const CommentForm = ({
     title = "Comment",
     isVisible = false,
-    showFocus = false,
+    showFocus = 0,
     setIsVisible,
 }: {
     title?: string
     isVisible: boolean
-    showFocus?: boolean
+    showFocus?: number
     setIsVisible?: Dispatch<SetStateAction<boolean>>
 }) => {
     const [isFocused, setIsFocused] = useState(false)
@@ -33,7 +33,7 @@ const CommentForm = ({
     }
     useEffect(() => {
         let timer: NodeJS.Timeout | null = null
-        if (!isFocused && inputRef.current) {
+        if (!isFocused && inputRef.current && showFocus) {
             timer = setTimeout(() => inputRef.current?.focus(), 100)
         }
         return () => {
@@ -56,7 +56,7 @@ const CommentForm = ({
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
                         value={comment}
-                        autoFocus
+                        autoFocus={showFocus ? true : false}
                         onChange={(e) => setComment(e.target.value)}
                         ref={inputRef}
                     />

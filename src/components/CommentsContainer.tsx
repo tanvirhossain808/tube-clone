@@ -22,7 +22,7 @@ const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
     const [totalDisLike, setTotalDisLike] = useState(0)
 
     const [isVisible, setIsVisible] = useState(false)
-    const [showFocus, setShowFocus] = useState(true)
+    const [showFocus, setShowFocus] = useState(0)
 
     const handleLike = () => {
         if (isLike) {
@@ -44,7 +44,7 @@ const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
     }
     const handleReply = () => {
         setIsVisible(true)
-        setShowFocus(!showFocus)
+        setShowFocus(showFocus + 1)
     }
     // console.log(totalDisLike)
     // console.log(totalLike)
