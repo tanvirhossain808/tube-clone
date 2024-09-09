@@ -66,7 +66,7 @@ const WatchIframe = ({
             </div>
             <div className="mt-10">
                 <div>
-                    <CommentForm />
+                    <CommentForm isVisible={true} />
                 </div>
                 <div>
                     {commentsInfo.map((comment) => (
