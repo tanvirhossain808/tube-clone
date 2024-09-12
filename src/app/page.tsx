@@ -1,12 +1,11 @@
 "use client"
 import CardContainer from "@/components/CardContainer"
 import useGetYouTubeVideosList from "@/hooks/useGetYouTubeVideosList"
-import { YouTubeVideoItem } from "@/lib/globalType"
-import axios from "axios"
+import { YouTubeSearchResponse, YouTubeVideoItem } from "@/lib/globalType"
 
 export default function Home() {
     const { videos } = useGetYouTubeVideosList()
-    const { items } = videos || []
+    const { items } = (videos as YouTubeSearchResponse) || []
 
     console.log(videos, "video")
     const loading = <div>this is for loading</div>
