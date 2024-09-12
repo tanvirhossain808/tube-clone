@@ -8,7 +8,8 @@ import formateStatisticsCount from "@/utils/formateStatisticsCount"
 import { FaAngleDown, FaBell } from "react-icons/fa"
 import CommentForm from "../Comments/CommentForm"
 import CommentsContainer from "../CommentsContainer"
-import { TopLevelComment } from "@/lib/globalType"
+import { CartType, TopLevelComment } from "@/lib/globalType"
+import { useSelector } from "react-redux"
 
 const WatchIframe = ({
     id,
@@ -35,7 +36,9 @@ const WatchIframe = ({
             // start: Math.round(startTime),
         },
     }
+    const comments = useSelector((state: CartType) => state?.comments || [])
     if (commentsInfo === undefined) return
+    if (comments?.length === 0) return
     return (
         <div className="min-h-screen w-full ">
             <YouTube videoId={id} opts={opts} />
@@ -69,7 +72,7 @@ const WatchIframe = ({
                     <CommentForm isVisible={true} />
                 </div>
                 <div>
-                    {commentsInfo.map((comment) => (
+                    {comments?.map((comment) => (
                         <CommentsContainer key={id} {...comment} />
                     ))}
                 </div>

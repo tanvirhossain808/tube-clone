@@ -16,7 +16,7 @@ const WatchContainer = ({ id }: { id: string }) => {
     const videInfo = selector?.find((arr) => arr.id === id)
     const videoTitle = videInfo?.snippet?.localized?.title
     // const channelName = videInfo?.snippet?.channelTitle
-    const { channelId, commentsInfo } = useGetComments(id) || {}
+    const { channelId, commentsInfo } = useGetComments(id) || []
     const { channelData } = useGetChannelInfo(channelId)
 
     console.log(channelId, "channelId")

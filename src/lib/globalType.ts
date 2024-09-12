@@ -72,13 +72,19 @@ interface YouTubeSearchResponse {
     items: YouTubeVideoItem[]
 }
 interface CartType {
-    cart: {
+    cart?: {
         items: YouTubeSearchResponse[]
         currentTime: {
             [key: string]: number
         }
     }
+    nextPageToken?: string
+    searchCache?: {
+        [key: string]: string
+    }
+    comments?: Comment[]
 }
+interface CartType {}
 
 interface TitleType {
     [key: number]: {
@@ -121,6 +127,18 @@ interface TopLevelCommentObj {
 }
 
 type TopLevelComment = TopLevelCommentObj[]
+interface Comment {
+    id: string
+    videoId: string
+    author: string
+    textDisplay: string
+    publishedAt: string
+    authorDisplayName: string
+    authorProfileImageUrl: string
+    authorChannelUrl?: string
+    likeCount: number
+    replies?: Comment[] // Recursive type for nested comments
+}
 
 export type {
     YouTubeSearchResponse,
@@ -132,4 +150,5 @@ export type {
     SearchCacheProps,
     TopLevelComment,
     TopLevelCommentObj,
+    Comment,
 }

@@ -1,4 +1,4 @@
-import { TopLevelCommentObj } from "@/lib/globalType"
+import { Comment, TopLevelCommentObj } from "@/lib/globalType"
 import formatUploadedDay from "@/utils/formateUploadedDay"
 import Image from "next/image"
 import { useRef, useState } from "react"
@@ -6,16 +6,15 @@ import { BiSolidDislike, BiSolidLike } from "react-icons/bi"
 import { SlDislike, SlLike } from "react-icons/sl"
 import CommentForm from "./Comments/CommentForm"
 
-const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
-    const { topLevelComment } = snippet
-    const {
-        authorProfileImageUrl,
-        likeCount,
-        publishedAt,
-        textDisplay,
-        videoId,
-        authorDisplayName,
-    } = topLevelComment.snippet
+const CommentsContainer = ({
+    authorProfileImageUrl,
+    likeCount,
+    publishedAt,
+    textDisplay,
+    authorDisplayName,
+    replies,
+}: Comment) => {
+    console.log("replies", replies)
     const [isLike, setIsLike] = useState(false)
     const [isDisLike, setIsDisLike] = useState(false)
     const [totalLike, setTotalLike] = useState(likeCount)
@@ -23,7 +22,6 @@ const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
 
     const [isVisible, setIsVisible] = useState(false)
     const [showFocus, setShowFocus] = useState(0)
-
     const handleLike = () => {
         if (isLike) {
             setTotalLike(totalLike - 1)
@@ -50,8 +48,8 @@ const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
     // console.log(totalLike)
     return (
         <>
-            <div className="flex items-center gap-6 mt-6">
-                <div className="cursor-pointer flex-shrink-0">
+            <div className="flex items-center gap-6 mt-6 border border-l-lime-300">
+                <div className="cursor-pointer flex-shrink-0 ml-1">
                     <Image
                         src={authorProfileImageUrl}
                         alt="profile image"
@@ -72,6 +70,9 @@ const CommentsContainer = ({ snippet }: TopLevelCommentObj) => {
                     </div>
 
                     <p>{textDisplay}</p>
+                    {replies?.map((reply) => (
+                        <CommentsContainer key={reply.id} {...reply} />
+                    ))}
                 </div>
             </div>
 
