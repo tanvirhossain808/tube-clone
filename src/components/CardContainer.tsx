@@ -26,7 +26,9 @@ const CardContainer: FC<YouTubeVideoItem> = ({
     id,
 }) => {
     const playingTime = useSelector((state: CartType) => {
-        return state.cart.currentTime[id] ? state.cart.currentTime[id] : 0
+        return state.cart && state.cart.currentTime[id]
+            ? state.cart.currentTime[id]
+            : 0
     })
     const router = useRouter()
 
