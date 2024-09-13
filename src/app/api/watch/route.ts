@@ -1,6 +1,5 @@
 // pages/api/getVideos.ts
 import data from "../../../utils/data.json"
-import axios from "axios"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req: Request, res: Response) {

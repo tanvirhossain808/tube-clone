@@ -7,7 +7,6 @@ import { commentData } from "../../../../constant/commentsData"
 
 export async function POST(req: Request, res: Response) {
     const { id } = await req.json()
-    console.log(id, "id")
     try {
         const apiKey = process.env.YOU_TUBE_VIDEO_KEY_API
         // const searchUrl = process.env.YOU_TUBE_VIDEO_API

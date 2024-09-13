@@ -14,7 +14,6 @@ const CommentsContainer = ({
     authorDisplayName,
     replies,
 }: Comment) => {
-    console.log("replies", replies)
     const [isLike, setIsLike] = useState(false)
     const [isDisLike, setIsDisLike] = useState(false)
     const [totalLike, setTotalLike] = useState(likeCount)
@@ -48,7 +47,7 @@ const CommentsContainer = ({
     // console.log(totalLike)
     return (
         <>
-            <div className="flex items-center gap-6 mt-6 border border-l-lime-300">
+            <div className="flex gap-6 mt-6 border border-l-lime-300">
                 <div className="cursor-pointer flex-shrink-0 ml-1">
                     <Image
                         src={authorProfileImageUrl}
@@ -64,7 +63,10 @@ const CommentsContainer = ({
                         <p className="cursor-pointer text-[14px]">
                             {authorDisplayName}
                         </p>
-                        <p className="text-gray-500 text-[14px]">
+                        <p
+                            className="text-gray-500 text-[14px]"
+                            suppressHydrationWarning
+                        >
                             {formatUploadedDay(publishedAt)}
                         </p>
                     </div>

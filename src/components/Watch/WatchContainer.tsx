@@ -19,9 +19,9 @@ const WatchContainer = ({ id }: { id: string }) => {
     const { channelId, commentsInfo } = useGetComments(id) || []
     const { channelData } = useGetChannelInfo(channelId)
 
-    console.log(channelId, "channelId")
-    console.log(channelData, "channelData")
-    console.log(commentsInfo, "commensInfo")
+    // console.log(channelId, "channelId")
+    // console.log(channelData, "channelData")
+    // console.log(commentsInfo, "commensInfo")
     const { title, thumbnails } = channelData?.data?.items[0]?.snippet || {}
     const { statistics } = channelData?.data?.items[0] || {}
     if (!commentsInfo) return
@@ -35,10 +35,7 @@ const WatchContainer = ({ id }: { id: string }) => {
                 statistics={statistics}
                 commentsInfo={commentsInfo}
             />
-            <div className="w-1/2">
-                <h1>hello</h1>
-            </div>
-            {/* <WatchSuggestionPart />/ */}
+            <div className="w-1/4">{/* <WatchSuggestionPart id={id} /> */}</div>
         </div>
     )
 }

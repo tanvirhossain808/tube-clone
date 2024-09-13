@@ -139,6 +139,63 @@ interface Comment {
     likeCount: number
     replies?: Comment[] // Recursive type for nested comments
 }
+interface VideoSearchType {
+    nextPageToken: string
+    regionCode: string
+    snippet: VideoSearchTypeItemsType[]
+    id: string
+}
+// {
+// "publishedAt": "2024-09-03T08:14:00Z",
+// "channelId": "UCHIQkF6dO4aQJP2A0rfHvuQ",
+// "title": "any yash 💞office kiss story pt 2😂❤️#love #chinesedrama #lovestory #shortvideo #funny #short #ckdrama",
+// "description": "any yash office kiss story pt 2  ❤️#love #chinesedrama #lovestory #shortvideo #funny #short #ckdrama @HappyLstory ...",
+// "thumbnails": {
+//     "default": {
+//         "url": "https://i.ytimg.com/vi/WfWYMo_akNU/default.jpg",
+//         "width": 120,
+//         "height": 90
+//     },
+//     "medium": {
+//         "url": "https://i.ytimg.com/vi/WfWYMo_akNU/mqdefault.jpg",
+//         "width": 320,
+//         "height": 180
+//     },
+//     "high": {
+//         "url": "https://i.ytimg.com/vi/WfWYMo_akNU/hqdefault.jpg",
+//         "width": 480,
+//         "height": 360
+//     }
+// },
+// "channelTitle": "Anne L Story",
+// "liveBroadcastContent": "none",
+// "publishTime": "2024-09-03T08:14:00Z"
+// }
+interface VideoSearchTypeItemsType {
+    publishedAt: string
+    title: string
+    description: string
+    thumbnails: {
+        high: {
+            url: string
+            width: number
+            height: number
+        }
+        medium: {
+            url: string
+            width: number
+            height: number
+        }
+        default: {
+            url: string
+            width: number
+            height: number
+        }
+    }
+    channelTitle: string
+    publishTime: string
+    id: string
+}
 
 export type {
     YouTubeSearchResponse,
@@ -151,4 +208,6 @@ export type {
     TopLevelComment,
     TopLevelCommentObj,
     Comment,
+    VideoSearchType,
+    VideoSearchTypeItemsType,
 }

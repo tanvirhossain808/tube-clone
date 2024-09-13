@@ -13,7 +13,7 @@ const Page = ({
     const { v } = searchParams
     return (
         <>
-            <WatchContainer id={v} />{" "}
+            <WatchContainer id={v} />
         </>
     )
 }

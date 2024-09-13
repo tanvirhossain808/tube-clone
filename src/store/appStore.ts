@@ -3,6 +3,7 @@ import searchReducer from "./videoSlice"
 import nextPageToken from "./nextPageTokenSlice"
 import searchCacheSlice from "./searchCacheSlice"
 import commentsSlice from "./commentsSlice"
+import videoSearchSlice from "./videoSearchSlice"
 
 const appStore = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const appStore = configureStore({
         nextPageToken: nextPageToken,
         searchCache: searchCacheSlice,
         comments: commentsSlice,
+        videoSearch: videoSearchSlice,
     },
 })
 

@@ -2,7 +2,7 @@
 import { TopLevelCommentObj } from "@/lib/globalType"
 import { addComments } from "@/store/commentsSlice"
 import axios from "axios"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 
 const useGetComments = (id: string) => {
