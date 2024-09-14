@@ -18,6 +18,7 @@ const initialState: Comment[] = [
         authorDisplayName: "",
         authorProfileImageUrl: "",
         authorChannelUrl: "",
+        textOriginal: "",
         replies: [],
     },
 ]
