@@ -24,7 +24,7 @@ const Header = () => {
                         <Link href={"/"}>
                             <FaYoutube className="test-red-800 w-10 h-10 dark:text-red-400 mr-1" />
                         </Link>
-                        <h3>YOUTUBE</h3>
+                        <h3 className="hidden md:block">YOUTUBE</h3>
                     </div>
                 </div>
                 <div className="flex items-center h-full">

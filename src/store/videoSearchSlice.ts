@@ -1,7 +1,7 @@
 import { VideoSearchType } from "@/lib/globalType"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 const initialState: {
-    videoSuggestion: VideoSearchType[][]
+    videoSuggestion: VideoSearchType[]
     searchVideo: any
 } = {
     videoSuggestion: [],
@@ -17,10 +17,7 @@ const videoSearchSlice = createSlice({
         ) => {
             return {
                 ...state,
-                videoSuggestion: [
-                    ...state.videoSuggestion?.map((video) => [...video]),
-                    action.payload,
-                ],
+                videoSuggestion: [...state.videoSuggestion, ...action.payload],
             }
         },
     },

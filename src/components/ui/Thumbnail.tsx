@@ -1,12 +1,12 @@
 import Image from "next/image"
 import { FC } from "react"
 type ThumbnailsType = {
-    default: {
+    default?: {
         url: string
         width: number
         height: number
     }
-    medium: {
+    medium?: {
         url: string
         width: number
         height: number
@@ -16,17 +16,17 @@ type ThumbnailsType = {
         width: number
         height: number
     }
-    standard: {
+    standard?: {
         url: string
         width: number
         height: number
     }
-    maxres: {
+    maxres?: {
         url: string
         width: number
         height: number
     }
-    totalTime: string
+    totalTime?: string
 }
 
 const Thumbnail: FC<ThumbnailsType> = ({
@@ -36,7 +36,7 @@ const Thumbnail: FC<ThumbnailsType> = ({
     standard,
     totalTime,
 }) => {
-    const { url, width, height } = standard
+    const { url, width, height } = standard || high
     // console.log(height, width);
     return (
         <div className="relative -z-10">

@@ -35,7 +35,9 @@ const WatchContainer = ({ id }: { id: string }) => {
                 statistics={statistics}
                 commentsInfo={commentsInfo}
             />
-            <div className="w-1/4">{/* <WatchSuggestionPart id={id} /> */}</div>
+            <div className="w-1/4 hidden lg:block">
+                <WatchSuggestionPart id={id} />
+            </div>
         </div>
     )
 }

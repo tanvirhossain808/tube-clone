@@ -41,7 +41,7 @@ import { VideoSearchType, VideoSearchTypeItemsType } from "@/lib/globalType"
 
 export const POST = async (req: NextRequest) => {
     const { q } = await req.json()
-    console.log("any")
+    console.log(q, "q")
     if (!q) return NextResponse.json("video query not found", { status: 404 })
     // const [error,response]?=await fetch(youTubeLInk+"search")
     const key = process.env.YOU_TUBE_VIDEO_KEY_API
@@ -68,12 +68,12 @@ export const POST = async (req: NextRequest) => {
             return { ...videosData.snippet, id: videosData.id }
         })
 
-        console.log(videos, "videos")
         return NextResponse.json(
             { data: videos, success: true },
             { status: 200 }
         )
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ err: error })
     }
 }

@@ -10,7 +10,7 @@ const CommentsContainer = ({
     authorProfileImageUrl,
     likeCount,
     publishedAt,
-    textDisplay,
+    textOriginal,
     authorDisplayName,
     replies,
 }: Comment) => {
@@ -71,7 +71,7 @@ const CommentsContainer = ({
                         </p>
                     </div>
 
-                    <p>{textDisplay}</p>
+                    <p>{textOriginal}</p>
                     {replies?.map((reply) => (
                         <CommentsContainer key={reply.id} {...reply} />
                     ))}

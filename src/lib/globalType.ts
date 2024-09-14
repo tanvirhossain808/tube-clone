@@ -83,6 +83,10 @@ interface CartType {
         [key: string]: string
     }
     comments?: Comment[]
+    videoSearch: {
+        videoSuggestion: VideoSearchTypeItemsType[]
+        searchVideo: any
+    }
 }
 interface CartType {}
 
@@ -137,6 +141,7 @@ interface Comment {
     authorProfileImageUrl: string
     authorChannelUrl?: string
     likeCount: number
+    textOriginal: string
     replies?: Comment[] // Recursive type for nested comments
 }
 interface VideoSearchType {
@@ -194,7 +199,7 @@ interface VideoSearchTypeItemsType {
     }
     channelTitle: string
     publishTime: string
-    id: string
+    id: { kind: string; videoId: string }
 }
 
 export type {

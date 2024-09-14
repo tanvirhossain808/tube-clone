@@ -40,7 +40,7 @@ const WatchIframe = ({
     if (commentsInfo === undefined) return
     if (comments?.length === 0) return
     return (
-        <div className="min-h-screen w-full ">
+        <div className="min-h-screen w-3/4">
             <YouTube videoId={id} opts={opts} />
             <h3 className={` text-2xl ${!title && "text-center"}`} text-2xl>
                 {title}
@@ -74,6 +74,7 @@ const WatchIframe = ({
                 <div>
                     {comments?.map((comment) => (
                         <CommentsContainer key={id} {...comment} />
+                        // <p>k</p>
                     ))}
                 </div>
             </div>

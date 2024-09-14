@@ -5,11 +5,12 @@ import { FC } from "react"
 import { YouTube, YouTubeProps } from "../../utils/ExportLib/ExportLib"
 type VideoPlayerProps = {
     id: string
-    width: number
-    height: number
+    width?: number
+    height?: number
     start?: number
-    playingTime: number
-    totalTime: string
+    playingTime?: number
+    totalTime?: string
+    show?: boolean
 }
 
 const VideoPlayer: FC<VideoPlayerProps> = ({
@@ -17,15 +18,12 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
     width,
     height,
     start = 0,
-    playingTime,
+    playingTime = 0,
     totalTime,
+    show = true,
 }) => {
-    const { onStateChange, startTime, leftTime, onReady } = useCacheVideoTime(
-        id,
-        playingTime,
-        totalTime as string
-    )
-    console.log(leftTime, "hey")
+    const { onStateChange, startTime, leftTime, onReady, callHook } =
+        useCacheVideoTime(id, playingTime, totalTime as string)
     const opts: YouTubeProps["opts"] = {
         height: `${height}`,
         width: `${width}`,
@@ -33,7 +31,7 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
             autoplay: 1,
             mute: 1,
             fs: 0,
-            start: Math.round(startTime),
+            start: Math.round(startTime || 0),
         },
     }
     return (
@@ -44,15 +42,14 @@ const VideoPlayer: FC<VideoPlayerProps> = ({
                 className="w-full"
                 iframeClassName="w-full h-[295px]"
                 loading="lazy"
-                onStateChange={onStateChange}
-                onReady={onReady}
+                {...(callHook && { onStateChange, onReady, leftTime })}
             />
             {
                 <p
-                    className="absolute bottom-16 w-10
+                    className={`absolute bottom-16 w-10
                  text-[12px] rounded-sm bg-[#000000c9]
-                  right-2 flex items-center justify-center
-                   h-[26px]"
+                  right-2 items-center justify-center
+                   h-[26px] ${show ? "flex" : "hidden"}`}
                 >
                     {leftTime}
                 </p>

@@ -11,16 +11,28 @@ const useGetVideoSearchList = (id: string) => {
     const videoInfo = useSelector((state: CartType) =>
         state.cart?.items[0]?.items.find((videoInfo) => videoInfo.id === id)
     )
-    const q = (videoInfo?.tags && videoInfo?.tags[0]) || "any"
+
     const videoLists = async () => {
+        const q = videoInfo?.snippet?.tags?.[0] || (await getVideoInfo(id))
+        console.log(q, "after")
         const videos = await axios.post("api/videoSearch", { q })
-        console.log(videos.data.data, "videos")
         dispatch(addVideoSuggestion(videos.data.data))
     }
     useEffect(() => {
-        videoLists()
+        const getData = async () => {
+            await videoLists()
+        }
+        getData()
     }, [id])
-    return { videosList }
 }
 
 export default useGetVideoSearchList
+
+export const getVideoInfo = async (id: string) => {
+    const data = await axios.post("/api/videoInfo", {
+        id,
+    })
+    console.log(data)
+    if (data?.data?.data?.tags?.length > 0) return data.data.data.tags[0]
+    return "random"
+}

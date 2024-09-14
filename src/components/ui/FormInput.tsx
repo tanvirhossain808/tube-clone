@@ -21,7 +21,7 @@ const FormInput = () => {
                     <div className="relative h-9">
                         <label
                             htmlFor="search"
-                            className={`w-[550px] relative rounded-l-xl border h-9 flex items-center z-10 
+                            className={`w-[250pd] lg:w-[550px] relative rounded-l-xl border h-9 flex items-center z-10 
                                 ${focus ? "border-blue-400" : " border-gray-700"}`}
                         >
                             <input
